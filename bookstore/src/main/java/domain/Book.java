@@ -70,4 +70,14 @@ public class Book {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
+				+ "]";
+	}
+	
+	//and finally a tostring
+	
+	
+
 }
