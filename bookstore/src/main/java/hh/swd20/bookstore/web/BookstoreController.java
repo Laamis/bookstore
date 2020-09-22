@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,12 +25,22 @@ public class BookstoreController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteStudent(@PathVariable("id") Long id, Model model) {
+	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repo.deleteById(id);
 		
+	
 		return "redirect:/index";
 	}
 	
-
-
+	@RequestMapping("/newbook")
+	public String addBook(Model model) {
+		model.addAttribute("book", new Book());
+		return "newbook";
+	}
+	
+	@PostMapping("/save")
+	public String save(Book book) {
+		repo.save(book);
+		return "redirect:/index";
+	}
 }
