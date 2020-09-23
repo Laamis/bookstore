@@ -1,3 +1,2 @@
 # bookstore
-bookstore repo for a class
-Hopefully the bookstore won't go bankrupt, can't take infinite corporate loans :((
+Currently the program has test-data that is inserted every hot-reload, which causes edits to these (and new books) to disappear when edits are done to java-files. This will be changed when the database actually saves to something else than the tomcat instance.  
