@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Bookstore</title>
 </head>
 <body>
-<h1>Welcome to the bookstore!</h1>
-<p>Available books:</p>
-<div th:text= "${book1}"></div>
-<!--/*Sorry about the horrendous toString, the book is just for testing purposes
- I pinky swear that it will look nicer in the future.*/-->
+	<h1>Welcome to the bookstore!</h1>
+	<p>Available books:</p>
+	<table>
+
+		<tbody>
+		<th>Title</th><th>Author</th><th>Year</th><th>Price</th><th>ISBN</th>
+			<tr th:each="book: ${books}">
+				
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.author}"></td>
+				<td th:text="${book.year}"></td>
+				<td th:text="${book.price}"></td>
+				<td th:text="${book.isbn}"></td>
+				<td><a th:href="@{/update/{id}(id=${book.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+		</tbody>
+	</table>
+	<a href="/newbook">Add a new book!</a>
+	
 
 </body>
 </html>

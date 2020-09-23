@@ -43,4 +43,10 @@ public class BookstoreController {
 		repo.save(book);
 		return "redirect:/index";
 	}
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable("id")Long id, Model model) {
+		model.addAttribute("book", repo.findById(id));
+		return "update";
+		
+	}
 }
