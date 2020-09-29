@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
+import hh.swd20.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookstoreController {
 	@Autowired
 	private BookRepository repo;
+	
+	@Autowired
+	private CategoryRepository cRepo;
 	
 	@GetMapping("/index")
 	public String indexPage(Model model) {
@@ -35,6 +39,7 @@ public class BookstoreController {
 	@RequestMapping("/newbook")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", cRepo.findAll());
 		return "newbook";
 	}
 	
@@ -46,6 +51,7 @@ public class BookstoreController {
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("book", repo.findById(id));
+		model.addAttribute("categories", cRepo.findAll());
 		return "update";
 		
 	}
