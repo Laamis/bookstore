@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity
@@ -22,6 +24,9 @@ public class Category {
 	private long categoryId;
 	private String name;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	//this annotation eliminates infinite loops
+	//has a pair in book.java
+	@JsonBackReference
 	private List<Book> books;
 
 	// Constructor with parameters

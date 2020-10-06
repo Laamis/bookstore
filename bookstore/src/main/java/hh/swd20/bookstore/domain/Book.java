@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 
 //The annotation tells the db that the book-class is an entity
@@ -24,6 +26,9 @@ public class Book {
 	private String isbn;
 	private Double price;
 	@ManyToOne
+	//this annotation eliminates infinite loops
+	//has a pair in category.java
+	@JsonManagedReference
 	@JoinColumn(name = "categoryId")
 	private Category category;
 
