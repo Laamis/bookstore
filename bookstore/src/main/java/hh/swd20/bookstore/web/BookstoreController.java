@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,11 @@ public class BookstoreController {
 		return "bookstore";
 	}
 	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+	
 	//REST-API that returns all books as a json
 	@GetMapping("/books")
 	public @ResponseBody List<Book> apiList(Model model) {
@@ -47,6 +53,7 @@ public class BookstoreController {
 	}
 	
 	@GetMapping("/delete/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repo.deleteById(id);
 		
