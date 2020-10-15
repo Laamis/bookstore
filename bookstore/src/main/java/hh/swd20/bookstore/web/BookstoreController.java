@@ -53,7 +53,7 @@ public class BookstoreController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repo.deleteById(id);
 		

@@ -30,8 +30,8 @@
 				<td th:text="${book.price}"></td>
 				<td th:text="${book.isbn}"></td>
 				<td th:text="${book.category.name}"></td>
-				<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/update/{id}(id=${book.id})}">Edit</a></td>
-				<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/update/{id}(id=${book.id})}">Edit</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
 		</tbody>
 	</table>
 	<div>
@@ -42,7 +42,7 @@
 		<a href="/categorylist">View all categories here!</a>
 	</div>
 	<div>
-		<td sec:authorize="hasRole('ADMIN')">
+		<td sec:authorize="hasAuthority('ADMIN')">
 		<a href="/newcategory">Add a new category</a>
 	</div>
 	<div>
