@@ -46,7 +46,9 @@
 		<a href="/newcategory">Add a new category</a>
 	</div>
 	<div>
-		<a href="/login?logout">Log out</a>
+		<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
 	</div>
 
 
