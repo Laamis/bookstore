@@ -33,4 +33,5 @@ public class CategoryController {
 		cRepo.save(category);
 		return "redirect:/categorylist";
 	}
+	
 }
